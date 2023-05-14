@@ -1,0 +1,58 @@
+{
+  "uid" : "9caff71355a68cd2",
+  "name" : "createNewOrderWithAuthWith2Ingredients",
+  "fullName" : "ApiTests.Order.CreateOrderTests.createNewOrderWithAuthWith2Ingredients",
+  "historyId" : "ebfc26c356ecb0da49a4a7e9f8049659",
+  "time" : {
+    "start" : 1684070284690,
+    "stop" : 1684070287169,
+    "duration" : 2479
+  },
+  "description" : "Create new order with auth with 2 ingredients. Return 200",
+  "descriptionHtml" : "<p>Create new order with auth with 2 ingredients. Return 200</p>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "package",
+    "value" : "ApiTests.Order"
+  }, {
+    "name" : "testClass",
+    "value" : "ApiTests.Order.CreateOrderTests"
+  }, {
+    "name" : "testMethod",
+    "value" : "createNewOrderWithAuthWith2Ingredients"
+  }, {
+    "name" : "suite",
+    "value" : "ApiTests.Order.CreateOrderTests"
+  }, {
+    "name" : "host",
+    "value" : "DESKTOP-GAODCRA"
+  }, {
+    "name" : "thread",
+    "value" : "3304@DESKTOP-GAODCRA.main(1)"
+  }, {
+    "name" : "framework",
+    "value" : "junit4"
+  }, {
+    "name" : "language",
+    "value" : "java"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "9caff71355a68cd2.json",
+  "parameterValues" : [ ]
+}

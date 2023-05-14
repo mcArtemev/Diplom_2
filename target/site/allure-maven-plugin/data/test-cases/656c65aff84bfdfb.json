@@ -1,0 +1,58 @@
+{
+  "uid" : "656c65aff84bfdfb",
+  "name" : "createUserWithoutNameExpected403",
+  "fullName" : "ApiTests.User.CreateUserTests.createUserWithoutNameExpected403",
+  "historyId" : "909c60222d5e47058a7db6c60c86957",
+  "time" : {
+    "start" : 1684070294529,
+    "stop" : 1684070294724,
+    "duration" : 195
+  },
+  "description" : "Create new user without name. Return 403",
+  "descriptionHtml" : "<p>Create new user without name. Return 403</p>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "package",
+    "value" : "ApiTests.User"
+  }, {
+    "name" : "testClass",
+    "value" : "ApiTests.User.CreateUserTests"
+  }, {
+    "name" : "testMethod",
+    "value" : "createUserWithoutNameExpected403"
+  }, {
+    "name" : "suite",
+    "value" : "ApiTests.User.CreateUserTests"
+  }, {
+    "name" : "host",
+    "value" : "DESKTOP-GAODCRA"
+  }, {
+    "name" : "thread",
+    "value" : "3304@DESKTOP-GAODCRA.main(1)"
+  }, {
+    "name" : "framework",
+    "value" : "junit4"
+  }, {
+    "name" : "language",
+    "value" : "java"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "656c65aff84bfdfb.json",
+  "parameterValues" : [ ]
+}
