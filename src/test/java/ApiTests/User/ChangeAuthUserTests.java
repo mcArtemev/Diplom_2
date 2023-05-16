@@ -88,7 +88,7 @@ public class ChangeAuthUserTests {
                 Response loginResponse = userTestFixtures.loginUser(loginUser);
                 loginResponse.then().assertThat().statusCode(200);
             }
-        } else if(!isAuthorized){
+        } else {
             Response response = userTestFixtures.updateUserData(updatedUser);
             response.then().assertThat().statusCode(401);
         }

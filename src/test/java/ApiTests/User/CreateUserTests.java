@@ -4,11 +4,10 @@ import ApiTests.BaseData;
 import io.qameta.allure.Description;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import org.hamcrest.MatcherAssert;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import static org.hamcrest.Matchers.equalTo;
 
 public class CreateUserTests {
     UserTestFixtures userTestFixtures = new UserTestFixtures();
@@ -39,9 +38,9 @@ public class CreateUserTests {
         createdUserData = userTestFixtures.createUser(userJsonData);
 
         createdUserData.then().assertThat().statusCode(200);
-        MatcherAssert.assertThat(createdUserData.as(UserDeserializer.class).getUser().getEmail(), equalTo(email));
-        MatcherAssert.assertThat(createdUserData.as(UserDeserializer.class).getUser().getName(), equalTo(name));
-        MatcherAssert.assertThat(createdUserData.as(UserDeserializer.class).isSuccess(), equalTo(true));
+        Assert.assertEquals(createdUserData.as(UserDeserializer.class).getUser().getEmail(), email);
+        Assert.assertEquals(createdUserData.as(UserDeserializer.class).getUser().getName(), name);
+        Assert.assertTrue(createdUserData.as(UserDeserializer.class).isSuccess());
     }
 
     @Test
@@ -55,8 +54,8 @@ public class CreateUserTests {
         Response existUserData = userTestFixtures.createUser(userJsonData);
 
         existUserData.then().assertThat().statusCode(403);
-        MatcherAssert.assertThat(existUserData.as(UserDeserializer.class).isSuccess(), equalTo(false));
-        MatcherAssert.assertThat(existUserData.as(UserDeserializer.class).getMessage(), equalTo("User already exists"));
+        Assert.assertFalse(existUserData.as(UserDeserializer.class).isSuccess());
+        Assert.assertEquals(existUserData.as(UserDeserializer.class).getMessage(), "User already exists");
     }
 
     @Test
@@ -70,8 +69,8 @@ public class CreateUserTests {
         Response existUserData = userTestFixtures.createUser(userJsonData);
 
         existUserData.then().assertThat().statusCode(403);
-        MatcherAssert.assertThat(existUserData.as(UserDeserializer.class).isSuccess(), equalTo(false));
-        MatcherAssert.assertThat(existUserData.as(UserDeserializer.class).getMessage(), equalTo("Email, password and name are required fields"));
+        Assert.assertFalse(existUserData.as(UserDeserializer.class).isSuccess());
+        Assert.assertEquals(existUserData.as(UserDeserializer.class).getMessage(), "Email, password and name are required fields");
     }
 
     @Test
@@ -85,8 +84,8 @@ public class CreateUserTests {
         Response existUserData = userTestFixtures.createUser(userJsonData);
 
         existUserData.then().assertThat().statusCode(403);
-        MatcherAssert.assertThat(existUserData.as(UserDeserializer.class).isSuccess(), equalTo(false));
-        MatcherAssert.assertThat(existUserData.as(UserDeserializer.class).getMessage(), equalTo("Email, password and name are required fields"));
+        Assert.assertFalse(existUserData.as(UserDeserializer.class).isSuccess());
+        Assert.assertEquals(existUserData.as(UserDeserializer.class).getMessage(), "Email, password and name are required fields");
     }
 
     @Test
@@ -100,7 +99,7 @@ public class CreateUserTests {
         Response existUserData = userTestFixtures.createUser(userJsonData);
 
         existUserData.then().assertThat().statusCode(403);
-        MatcherAssert.assertThat(existUserData.as(UserDeserializer.class).isSuccess(), equalTo(false));
-        MatcherAssert.assertThat(existUserData.as(UserDeserializer.class).getMessage(), equalTo("Email, password and name are required fields"));
+        Assert.assertFalse(existUserData.as(UserDeserializer.class).isSuccess());
+        Assert.assertEquals(existUserData.as(UserDeserializer.class).getMessage(), "Email, password and name are required fields");
     }
 }

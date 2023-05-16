@@ -30,7 +30,7 @@ public class UserOrdersTests {
 
     @Test
     @Description("Get user orders with auth. Return 200")
-    public void getUserOrderWithAuth(){
+    public void getUserOrderWithAuthExpected200(){
         UserSerializer userJsonData = new UserSerializer("lutic@mail.ru", "123456", "Lutic");
         createdUserData = userTestFixtures.createUser(userJsonData);
         String token = createdUserData.as(UserDeserializer.class).getAccessToken();
@@ -43,12 +43,12 @@ public class UserOrdersTests {
 
     @Test
     @Description("Get user orders without auth. Return 401")
-    public void getUserOrderWithoutAuth(){
+    public void getUserOrderWithoutAuthExpected401(){
         UserSerializer userJsonData = new UserSerializer("lutic@mail.ru", "123456", "Lutic");
         createdUserData = userTestFixtures.createUser(userJsonData);
 
         Response userOrders = userOrdersTestFixtures.userOrders("");
         userOrders.then().assertThat().statusCode(401);
-        Assert.assertTrue("Статус некорректен. По факту: " + userOrders.as(UserOrdersDeserializer.class).getMessage(), userOrders.as(UserOrdersDeserializer.class).getMessage().equals("You should be authorised"));
+        Assert.assertEquals(userOrders.as(UserOrdersDeserializer.class).getMessage(), "You should be authorised");
     }
 }

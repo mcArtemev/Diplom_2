@@ -4,19 +4,17 @@ import ApiTests.BaseData;
 import io.qameta.allure.Description;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import org.hamcrest.MatcherAssert;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
 
 public class LoginUser {
     UserTestFixtures userTestFixtures = new UserTestFixtures();
     String email;
     String password;
     String name;
-
     Response createdUserData;
 
     @Before
@@ -47,9 +45,9 @@ public class LoginUser {
                 .post("/api/auth/login");
 
         response.then().assertThat().statusCode(200);
-        MatcherAssert.assertThat(response.as(UserDeserializer.class).isSuccess(), equalTo(true));
-        MatcherAssert.assertThat(response.as(UserDeserializer.class).getUser().getEmail(), equalTo(email));
-        MatcherAssert.assertThat(response.as(UserDeserializer.class).getUser().getName(), equalTo(name));
+        Assert.assertTrue(response.as(UserDeserializer.class).isSuccess());
+        Assert.assertEquals(response.as(UserDeserializer.class).getUser().getEmail(), email);
+        Assert.assertEquals(response.as(UserDeserializer.class).getUser().getName(), name);
     }
 
     @Test
@@ -67,8 +65,8 @@ public class LoginUser {
                 .post("/api/auth/login");
 
         response.then().assertThat().statusCode(401);
-        MatcherAssert.assertThat(response.as(UserDeserializer.class).getMessage(), equalTo("email or password are incorrect"));
-        MatcherAssert.assertThat(response.as(UserDeserializer.class).isSuccess(), equalTo(false));
+        Assert.assertEquals(response.as(UserDeserializer.class).getMessage(), "email or password are incorrect");
+        Assert.assertFalse(response.as(UserDeserializer.class).isSuccess());
     }
 
     @Test
@@ -86,7 +84,7 @@ public class LoginUser {
                 .post("/api/auth/login");
 
         response.then().assertThat().statusCode(401);
-        MatcherAssert.assertThat(response.as(UserDeserializer.class).getMessage(), equalTo("email or password are incorrect"));
-        MatcherAssert.assertThat(response.as(UserDeserializer.class).isSuccess(), equalTo(false));
+        Assert.assertEquals(response.as(UserDeserializer.class).getMessage(), "email or password are incorrect");
+        Assert.assertFalse(response.as(UserDeserializer.class).isSuccess());
     }
 }

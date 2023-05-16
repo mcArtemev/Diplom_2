@@ -19,7 +19,6 @@ public class CreateOrderTests {
     UserTestFixtures userTestFixtures = new UserTestFixtures();
     Response createdUserData;
     ArrayList<Ingredient> ingredientData = new ArrayList<Ingredient>();
-    ArrayList<String> orderIngredients = new ArrayList<String>();
     @Before
     public void setUp() {
         RestAssured.baseURI = BaseData.baseURI;
@@ -34,7 +33,7 @@ public class CreateOrderTests {
 
     @Test
     @Description("Create new order with auth with 1 ingredient. Return 200")
-    public void createNewOrderWithAuthWithIngredien(){
+    public void createNewOrderWithAuthWithIngredient(){
         ingredientData.add(orderTestFixtures.getIngredients(0));
         UserSerializer userJsonData = new UserSerializer("lutic2@mail.ru", "123456", "Lutic");
         createdUserData = userTestFixtures.createUser(userJsonData);
@@ -45,7 +44,7 @@ public class CreateOrderTests {
         Response order = orderTestFixtures.createOrder(token, orderJsonData);
 
         order.then().assertThat().statusCode(200);
-        Assert.assertTrue(order.as(OrderDeserializer.class).isSuccess()==true);
+        Assert.assertTrue(order.as(OrderDeserializer.class).isSuccess());
 
         Assert.assertThat(ingredientData.get(0).getName(), CoreMatchers.containsString(order.as(OrderDeserializer.class).getOrder().getIngredients()[0].getName()));
     }
@@ -64,7 +63,7 @@ public class CreateOrderTests {
         Response order = orderTestFixtures.createOrder(token, orderJsonData);
 
         order.then().assertThat().statusCode(200);
-        Assert.assertTrue(order.as(OrderDeserializer.class).isSuccess()==true);
+        Assert.assertTrue(order.as(OrderDeserializer.class).isSuccess());
 
         Assert.assertThat(ingredientData.get(0).getName(), CoreMatchers.containsString(order.as(OrderDeserializer.class).getOrder().getIngredients()[0].getName()));
         Assert.assertThat(ingredientData.get(1).getName(), CoreMatchers.containsString(order.as(OrderDeserializer.class).getOrder().getIngredients()[1].getName()));
@@ -73,7 +72,6 @@ public class CreateOrderTests {
     @Test
     @Description("Create new order with auth with incorrect ingredient. Return 500")
     public void createNewOrderWithAuthWithoutIncorrectIngredient(){
-
         UserSerializer userJsonData = new UserSerializer("lutic2@mail.ru", "123456", "Lutic");
         createdUserData = userTestFixtures.createUser(userJsonData);
         String token = createdUserData.as(UserDeserializer.class).getAccessToken();
@@ -97,13 +95,13 @@ public class CreateOrderTests {
         Response order = orderTestFixtures.createOrder(token, orderJsonData);
 
         order.then().assertThat().statusCode(400);
-        Assert.assertTrue(order.as(OrderDeserializer.class).isSuccess()==false);
-        Assert.assertTrue("Ожидалось: Ingredient ids must be provided. По факту: " + order.as(OrderDeserializer.class).getMessage(), order.as(OrderDeserializer.class).getMessage().equals("Ingredient ids must be provided"));
+        Assert.assertFalse(order.as(OrderDeserializer.class).isSuccess());
+        Assert.assertEquals("Ingredient ids must be provided", order.as(OrderDeserializer.class).getMessage());
     }
 
     @Test
     @Description("Create new order without auth with 2 ingredients. Return 401")
-    public void createNewOrderWithoutAuthWith2Ingrediens(){
+    public void createNewOrderWithoutAuthWith2Ingredients(){
         ingredientData.add(orderTestFixtures.getIngredients(0));
         ingredientData.add(orderTestFixtures.getIngredients(1));
         UserSerializer userJsonData = new UserSerializer("lutic2@mail.ru", "123456", "Lutic");
